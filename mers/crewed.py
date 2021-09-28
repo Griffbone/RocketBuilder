@@ -7,6 +7,8 @@
     
     2) Heineman, W. Jr. "Mass Estimation and Forecasting for Aerospace Vehicles Based on Historical Data," 
         NASA Johnson Space Center, November 1994, JSC-26098.
+
+    3) "Man-Systems Integration Standards, Revision B," NASA, July 1995, NASA STD-3000.
 """
 
 
@@ -121,7 +123,17 @@ def mass_module(v_cabin):
     return m/2.20462
 
 
-def crew_vehicle_mass(n_crew, n_days, m_dry, quality=2, method='r'):
+def crew_cabin_mass(n_crew, n_days, m_dry, quality=2, method='r'):
+    """ Function to estimate the mass of a crew cabin (consumables/structure/ECLSS)
+        :param n_crew: number of crew members
+        :param n_days: number of days on orbit
+        :param m_dry: vehicle dry mass (kg)
+        :param quality: quality of space (1 = tolerable, 2 = performance, 3 = optimal)
+        :param method: calculation method (r = Rohrschneider, h = Heineman)
+
+        :return m: mass of crew cabin (kg)
+    """
+
     v_cabin = volume_cabin(n_crew, n_days, quality)
 
     if method.upper() == 'R':
@@ -137,6 +149,3 @@ def crew_vehicle_mass(n_crew, n_days, m_dry, quality=2, method='r'):
         raise ValueError("Invalid 'method' parameter. Expected 'r' or 'h,' got: {}".format(method))
 
     return m
-
-
-print(crew_vehicle_mass(12, 14, 15000, 2, method='h'))

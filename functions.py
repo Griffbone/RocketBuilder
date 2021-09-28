@@ -92,14 +92,6 @@ def size_tank(v_tank, geometry, dome_fraction=0.7, diam=3.7):
 
     return 12.16*v_tank
 
-    # ts = np.linspace(0, 2*np.pi, 100)
-    # x = r*np.cos(ts)
-    # y = r*np.sin(ts)
-    #
-    # plt.plot(x, y, 'k')
-    # # plt.figaspect('equal')
-    # plt.axis('equal')
-
 
 def get_margin(engine, mpl, dv, pi_se):
     fracs = mass_fractions(engine.isp, dv, pi_se)

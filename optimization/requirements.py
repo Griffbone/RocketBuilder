@@ -12,15 +12,16 @@ def v_circ(alt):
     return v
 
 
-def v_grav(alt):
+def v_grav(alt, k=0.75):
     """ Function to estimate gravity loss for launch to final altitude
         Edberg and Costa Eq. 3.13 (p. 145)
 
         :param alt: orbital altitude
+        :param k: factor to reduce energy method result by
         :return v: gravity loss
     """
 
-    v = 0.8*np.sqrt((2*cns.g*alt)/(1 + alt/cns.re))
+    v = k*np.sqrt((2*cns.g*alt)/(1 + alt/cns.re))
 
     return v
 

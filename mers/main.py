@@ -1,6 +1,3 @@
-import fluids as fld
-
-
 def m_tank(fld, A, V):
     """ Function to calculate propellant tank mass from geometry and propellant characteristics
         Additionally calculates propellant tank insulation and baffle/anti-vortex device masses

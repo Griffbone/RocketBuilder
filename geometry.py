@@ -97,10 +97,47 @@ def tangent_ogive(L, R, f=0.1):
     return v, a, x, y
 
 
-v, a, x, y = tangent_ogive(6, 3.7/2, 0.25)
-plt.plot(x, y)
-plt.plot(x, -y)
+def ellipsoid(r, a):
+    """ Function to calculate the volume and surface area of an ellipsoid
+        :param r: radius
+        :param a: minor axis height
 
-print(revolve_integral(x, y, 2.5, max(x)))
-plt.axis('equal')
-plt.show()
+        :return v: volume
+        :return sa: surface area
+    """
+
+    v = (4/3)*np.pi*a*r**2
+    sa = 4*np.pi*(((r**2)**1.6 + 2*(r*a)**1.6)/3)**(1/1.6)
+
+    return v, sa
+
+
+def delta_wing(db, s, AR, k=0.1):
+    """ Function to calculate the shape of a delta wing
+        :param db: body diameter
+        :param s: wing area
+        :param AR: wing aspect ratio
+        :param k: tip chord as fraction of central chord
+
+        :return cc: central chord
+        :return rc: root chord
+        :return tc: tip chord
+        :return b: wing span
+    """
+
+    b = np.sqrt(AR*s)
+    cc = s/(b*k + (b/2)*(1-k))
+    tc = k*cc
+
+    tant = (b/2)/(cc - tc)
+    lr = (db/2)/tant
+    rc = cc - lr
+
+    return cc, rc, tc, b
+# v, a, x, y = tangent_ogive(6, 3.7/2, 0.25)
+# plt.plot(x, y)
+# plt.plot(x, -y)
+#
+# print(revolve_integral(x, y, 2.5, max(x)))
+# plt.axis('equal')
+# plt.show()

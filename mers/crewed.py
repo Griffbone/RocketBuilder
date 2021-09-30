@@ -44,7 +44,7 @@ def volume_cabin(n_crew, n_days, quality=1):
     return v*n_crew
 
 
-def mass_avionics(m_dry):
+def avionics_mass(m_dry):
     """ Function to determine mass of avionics.
         Ref: Rohrschneider 13-2.
 
@@ -58,7 +58,7 @@ def mass_avionics(m_dry):
     return m
 
 
-def mass_eclss(v_cabin, n_crew, n_days, m_av):
+def eclss_mass(v_cabin, n_crew, n_days, m_av):
     """ Function to determine mass of ECLSS.
         Ref: Rohrschneider 14-2
 
@@ -78,7 +78,7 @@ def mass_eclss(v_cabin, n_crew, n_days, m_av):
     return m/2.20462
 
 
-def mass_equip(n_crew, n_days):
+def equipment_mass(n_crew, n_days):
     """ Function to estimate mass of equipment (food, water, furnishings) for a vehicle.
         Ref: Rohrschneider 17-3
 
@@ -109,7 +109,7 @@ def gross_mass(n_crew, n_days, v_cabin):
     return m/2.20462
 
 
-def mass_module(v_cabin):
+def module_mass(v_cabin):
     """ Function to estimate the structural mass of a crew module
         Ref: Heineman (JSC-26098) p. 20
 
@@ -137,10 +137,10 @@ def crew_cabin_mass(n_crew, n_days, m_dry, quality=2, method='r'):
     v_cabin = volume_cabin(n_crew, n_days, quality)
 
     if method.upper() == 'R':
-        m_av = mass_avionics(m_dry)
-        m_ls = mass_eclss(v_cabin, n_crew, n_days, m_av)
-        m_eq = mass_equip(n_crew, n_days)
-        m_cab = mass_module(v_cabin)
+        m_av = avionics_mass(m_dry)
+        m_ls = eclss_mass(v_cabin, n_crew, n_days, m_av)
+        m_eq = equipment_mass(n_crew, n_days)
+        m_cab = module_mass(v_cabin)
 
         m = m_av + m_ls + m_eq + m_cab
     elif method.upper() == 'H':

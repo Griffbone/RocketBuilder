@@ -2,7 +2,6 @@ import numpy as np
 import constants as cn
 import propulsion as prop
 import matplotlib.pyplot as plt
-from newtonraphson import newton_raphson
 
 
 def mass_fractions(isp, dv, pi_se):

@@ -1,14 +1,14 @@
-import numpy as np
 import constants as cn
 
 
 class Fluid:
-    def __init__(self, density, temp):
+    def __init__(self, name, density, temp):
         """Initialize Fluid class
             :param density: fluid density (kg/m^3)
             :param temp: fluid temperature for given density (K)
         """
 
+        self.name = name
         self.rho = density
         self.T = temp
 

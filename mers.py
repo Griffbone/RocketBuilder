@@ -13,7 +13,6 @@
     4) Dababneh, O. and Kipouros, T. "A Review of Aircraft Wing Mass Estimation Methods," November 8 2017.
 """
 
-import numpy as np
 import constants as cns
 
 
